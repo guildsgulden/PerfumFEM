@@ -104,7 +104,6 @@ def on_click(image, target_point, points, size, evt: gr.SelectData):
         return image, str(evt.index), not target_point
     points['handle'].append([evt.index[1], evt.index[0]])
     image = add_points_to_image(image, points, size=SIZE_TO_CLICK_SIZE[size])
-    return image, str(evt.index), not target_point
 
 
 def on_drag(model, points, max_iters, state, size, mask):
@@ -207,7 +206,6 @@ def on_save_files(image, state):
     os.makedirs('tmp', exist_ok=True)
     image_name = f'tmp/image_{uuid.uuid4()}.png'
     video_name = f'tmp/video_{uuid.uuid4()}.mp4'
-    imageio.imsave(image_name, image)
     imageio.mimsave(video_name, state['history'])
     return [image_name, video_name]
 
